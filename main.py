@@ -1,8 +1,17 @@
 from fastapi import FastAPI, Query
+from fastapi.middleware.cors import CORSMiddleware
 from typing import List
 import json
 
 app = FastAPI()
+
+# Enable CORS: Allow all origins for GET requests
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],        # Allow any origin
+    allow_methods=["GET"],      # Allow only GET requests
+    allow_headers=["*"],        # Allow any headers
+)
 
 @app.get("/")
 def read_root():
